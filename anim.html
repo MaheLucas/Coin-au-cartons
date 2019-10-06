@@ -1,0 +1,103 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type="text/css">
+#roue, #roue_ {
+   width:80px;
+   height:80px;
+	background-image: url('roue.png');
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	margin-left: 10px;
+	
+	}
+	
+	
+#scroll {
+	width:100px;
+	height:20px;
+	overflow-Y:hidden;
+	overflow:auto;
+	}
+#w {
+	width:980px;
+	height:10px;
+	
+	}
+
+#marche, #marche1 {
+   width:48px;
+   height:74px;
+	background-image: url('marche.png');
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	margin-left: 30px;
+		}
+#marche {position: absolute;
+         top:400px;
+         left:0;}	
+	
+#scroll1 {
+	width:100px;
+	height:20px;
+	overflow-Y:hidden;
+	overflow:auto;
+	}
+#w1 {
+	width:384px;
+	height:10px;
+	
+	}	
+</style>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#roue').css('backgroundPosition','0 0')
+   var pos=$('#roue').css('backgroundPosition').split(' ')[0].replace(/px|pt/,'')
+   var tourne=setInterval( function(){
+   		       pos=(pos-80<-880)?0:pos-80;
+   		       $('#roue').css('backgroundPosition',pos+'px 0');},50)
+   		       
+  
+	$('#scroll').scroll( function(){
+					 seq=- Math.floor($('#scroll').scrollLeft()/80) * 80
+  					 $('#roue_').css('backgroundPosition',seq+'px 0');
+  					 });
+
+   $('#marche').css('backgroundPosition','0 0')
+   var step=$('#marche').css('backgroundPosition').split(' ')[0].replace(/px|pt/,'')
+   var walk=setInterval( function(){
+   		       step=(step-48<-240)?0:step-48;
+   		       $('#marche').css('backgroundPosition',step+'px 0');
+   		       avance=$('#marche').css('left').replace(/px|pt/,'')
+   		       $('#marche').css('left',(avance>800)?'0px':(+avance+10)+'px');
+
+   		       },100)
+
+
+	$('#scroll1').scroll( function(){
+					 seq1=- Math.floor($('#scroll1').scrollLeft()/48) * 48
+  					 $('#marche1').css('backgroundPosition',seq1+'px 0');
+  					 });
+
+ });</script>
+<title>Tourne Boule</title>
+</head>
+<body>
+<div id="roue"></div>
+<br/><br/>
+<div id="roue_"></div>
+<div id="scroll">
+ <div id="w">&nbsp;</div>
+</div> 
+<br/>
+<div id="marche"></div>
+
+<div id="marche1"></div>
+<div id="scroll1">
+ <div id="w1">&nbsp;</div>
+</div> 
+
+</body>
+</html>
